@@ -7,7 +7,7 @@ const app = express();
 
 const api_key="078b382508274c4bad960526b01fbedb";
 const url ="https://newsapi.org/v2/everything";
-// const newsrouter = express.Router(); // creating new router object to handle request
+
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
