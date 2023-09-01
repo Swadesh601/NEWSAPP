@@ -4,7 +4,7 @@
       <div class="container">  
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <% for( let element = 0; element < 12; element++ ) { %>
-            <% if (final[element] !== null) { %>              
+            <% if (final[element].urlToImage && final[element].url) { %>              
               <div class="col-sm-12 col-md-6 col-lg-4 play">
               <div class="card shadow-md show">
                 <a class="url" href=<%= final[element].url%>>
@@ -24,9 +24,7 @@
               </a>
             </div>
           </div>
-          <% } else {%>
-                <h1>No Post Found</h1>
-            <% } %>
+          <% }%>
         <% } %>
         </div>   
       </div>
