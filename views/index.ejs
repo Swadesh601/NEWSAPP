@@ -1,23 +1,23 @@
 <%- include("partials/header.ejs") %>
 <section class="cards">
     <div class="album py-5">
-      <div class="container">  
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <% for( let element = 0; element < 12; element++ ) { %>
-            <% if (final[element].urlToImage && final[element].url) { %>              
+      <div class="container"> 
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <% final.forEach(element => { %>
+            <% if (element.urlToImage && element.url) { %> 
               <div class="col-sm-12 col-md-6 col-lg-4 play">
-              <div class="card shadow-md show">
-                <a class="url" href=<%= final[element].url%>>
-                <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src=<%= final[element].urlToImage %>  alt="img" >               
+              <div class="card shadow-md show">  
+                <a class="url" href="<%=element.url %>">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src = <%= element.urlToImage %>  alt="img" >               
                  <div class="card-body">
-                    <h4><%=final[element].title%></h4>
-                    <p class="card-text"><%=final[element].description%></p>
+                    <h4><%=element.title%></h4>
+                    <p class="card-text"><%=element.description%></p>
                   <div class="d-flex justify-content-between align-items-center">                
                     <small class="text-muted">
-                     <% const time = new Date(final[element].publishedAt).toLocaleString("en-US" , { 
+                     <% const time = new Date(element.publishedAt).toLocaleString("en-US" , { 
                         timeZone : "Asia/Jakarta"
                       }); %>
-                      <%= time %> <strong class="mx-2"> <%=final[element].source.name%> </strong>
+                      <%= time %> <strong class="mx-2"> <%=element.source.name%> </strong>
                     </small>
                   </div>
                 </div>
@@ -25,12 +25,14 @@
             </div>
           </div>
           <% }%>
-        <% } %>
+          <% }); %>
         </div>   
       </div>
     </div> 
 </section>
+
 <%- include("partials/footer.ejs") %>
+
 <script>
 var leng=document.querySelectorAll(".nav-item").length;
 let i=0;
