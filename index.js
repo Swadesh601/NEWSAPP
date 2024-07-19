@@ -7,22 +7,22 @@ const app = express();
 
 const api_key="078b382508274c4bad960526b01fbedb";
 const url ="https://newsapi.org/v2/everything";
-
+// const newsrouter = express.Router(); // creating new router object to handle request
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-
 app.get("/" , async (req,res) => {
 try 
 {
- const response = await axios.get(`${url}?domains=indianexpress.com&apiKey=${api_key}`);
+ const response = await axios.get(`${url}?domains=wsj.com&apiKey=${api_key}`);
  const result = response.data; // JSON
+ console.log(result.articles);
  res.render("index.ejs" , { final:result.articles}); // passing an array here [articles is an array refer url with postman].  
 }
 catch(error) 
 {
-    res.status(404).send(error.message);
+    res.render("index.ejs" , {final:error.response.data});
 }
 });
 
@@ -37,20 +37,20 @@ app.post("/" , async (req,res) => {
     }
     catch(error) 
     {
-        res.status(404).send(error.message);
+        res.render("index.ejs" , {final:error.response.data});
     }
     });
     
     app.get("/home" , async (req,res) => { // <a class="nav-link mx-3"  href="home"> here href=home is accessed as endpoint for localhost
         try 
         {
-         const response = await axios.get(`${url}?domains=indianexpress.com&apiKey=${api_key}`);
+         const response = await axios.get(`${url}?domains=wsj.com&apiKey=${api_key}`);
          const result = response.data; // JSON
          res.render("index.ejs" , { final:result.articles}); // passing an array here [articles is an array refer url with postman].  
         }
         catch(error) 
         {
-            res.status(404).send(error.message);
+            res.render("index.ejs" , {final:error.response.data});
         }
         });
 
@@ -63,7 +63,7 @@ app.post("/" , async (req,res) => {
             }
             catch(error) 
             {
-                res.status(404).send(error.message);
+                res.render("index.ejs" , {final:error.response.data});
             }
             });
             
@@ -76,7 +76,7 @@ app.post("/" , async (req,res) => {
                 }
                 catch(error) 
                 {
-                    res.status(404).send(error.message);
+                    res.render("index.ejs" , {final:error.response.data});
                 }
                 });
 
@@ -89,7 +89,7 @@ app.post("/" , async (req,res) => {
                     }
                     catch(error) 
                     {
-                        res.status(404).send(error.message);
+                        res.render("index.ejs" , {final:error.response.data});
                     }
                     });
                        
@@ -102,7 +102,7 @@ app.post("/" , async (req,res) => {
                             }
                             catch(error) 
                             {
-                                res.status(404).send(error.message);
+                                res.render("index.ejs" , {final:error.response.data});
                             }
                             });
 
@@ -115,7 +115,7 @@ app.post("/" , async (req,res) => {
                                 }
                                 catch(error) 
                                 {
-                                    res.status(404).send(error.message);
+                                    res.render("index.ejs" , {final:error.response.data});
                                 }
                                 });        
 
